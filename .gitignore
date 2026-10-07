@@ -1,0 +1,20 @@
+# Gradle
+.gradle/
+build/
+
+# IDE
+*.iml
+.idea/
+*.iws
+*.ipr
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Do NOT ignore jars: libs/*.jar, localrepo/*.jar and the Gradle wrapper
+# jar are required for the build.

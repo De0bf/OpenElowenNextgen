@@ -1,0 +1,110 @@
+plugins {
+    id 'fabric-loom' version "${loom_version}"
+}
+
+version = "${mod_version}"
+group = 'com.elowen'
+base {
+    archivesName = "${mod_id}-nextgen"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+    // Identity ("no-op") mappings used because Minecraft 26.3 is shipped unobfuscated.
+    maven { url = uri('localrepo') }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    // Minecraft 26.3 ships with official (unobfuscated) names, so an identity mapping
+    // is enough: Loom detects the unobfuscated client automatically and the sources
+    // compile directly against the official names.
+    mappings "com.elowen:identity:1.0"
+
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    // Libraries bundled by the original mod (META-INF/jars/*.jar), copied to libs/.
+    implementation files(
+            'libs/skija-shared-0.143.17.jar',
+            'libs/skija-windows-x64-0.143.17.jar',
+            'libs/types-0.2.0.jar'
+    )
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+    options.compilerArgs << '-Xmaxerrs' << '10000'
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Decompiler-artifact normalization.
+//
+// The sources under src/ were produced by a Java decompiler. In a handful of
+// files the decompiler resolved the *inherited Minecraft-instance field*
+// (Module.G / Wrapper.q) as a *class* reference, emitting e.g.
+//     NameTags$NameTagData.player      ->  should be  G.player
+//     AntiStaff$PayloadDecoder.player  ->  should be  G.player
+//     EventUseItemRayTrace.player      ->  should be  q.player
+// Only the qualifier identifier is wrong; the behaviour is unchanged, because
+// the bytecode really is `getstatic G:Lnet/minecraft/client/Minecraft;`.
+//
+// Rather than edit the original sources, we rewrite just those specific
+// mis-resolved references into a generated source tree at build time, and
+// compile from that tree. src/ itself is never modified.
+// ---------------------------------------------------------------------------
+def normalizedSrcDir = layout.buildDirectory.dir('normalized-src')
+def mcMemberNames = ['player', 'level', 'options', 'gameRenderer', 'gameMode',
+                     'gui', 'hitResult', 'getWindow', 'getDeltaTracker', 'getConnection']
+
+tasks.register('normalizeSources') {
+    def srcDir = file('src/main/java')
+    def outDir = normalizedSrcDir
+    inputs.dir(srcDir)
+    outputs.dir(outDir)
+    doLast {
+        def out = outDir.get().asFile
+        out.deleteDir()
+        out.mkdirs()
+        srcDir.eachFileRecurse { f ->
+            if (!f.isFile()) {
+                return
+            }
+            def rel = srcDir.toPath().relativize(f.toPath()).toString()
+            def text = f.getText('UTF-8')
+            if (rel.endsWith('RotationManager.java')) {
+                // implements Wrapper -> Minecraft holder is the inherited field `q`
+                mcMemberNames.each { m ->
+                    text = text.replace('EventUseItemRayTrace.' + m, 'q.' + m)
+                }
+            } else {
+                // extends Module -> Minecraft holder is the inherited field `G`
+                mcMemberNames.each { m ->
+                    text = text.replace('NameTags$NameTagData.' + m, 'G.' + m)
+                    text = text.replace('AntiStaff$PayloadDecoder.' + m, 'G.' + m)
+                }
+            }
+            def target = new File(out, rel)
+            target.parentFile.mkdirs()
+            target.setText(text, 'UTF-8')
+        }
+    }
+}
+
+sourceSets.main.java.setSrcDirs([normalizedSrcDir.get().asFile])
+compileJava.dependsOn tasks.named('normalizeSources')
