@@ -303,7 +303,7 @@ public class Disabler extends Module {
    }
 
    public static float N(ServerboundMovePlayerPacket var0) {
-      if (AntiStaff$PayloadDecoder.gameMode == null) {
+      if (G.gameMode == null) {
          return 0.0F;
       }
 
@@ -323,7 +323,7 @@ public class Disabler extends Module {
    }
 
    public static float n(ServerboundMovePlayerPacket var0) {
-      if (AntiStaff$PayloadDecoder.gameMode == null) {
+      if (G.gameMode == null) {
          return 0.0F;
       }
 
@@ -376,7 +376,7 @@ public class Disabler extends Module {
    }
 
    public static void X(ServerboundMovePlayerPacket var0, float var1) {
-      if (AntiStaff$PayloadDecoder.gameMode != null) {
+      if (G.gameMode != null) {
          Class var10000 = var0.getClass();
          String[] var10001 = new String[2];
          String[] var4 = c;
@@ -393,7 +393,7 @@ public class Disabler extends Module {
    }
 
    public static void b(ServerboundMovePlayerPacket var0, float var1) {
-      if (AntiStaff$PayloadDecoder.gameMode != null) {
+      if (G.gameMode != null) {
          Class var10000 = var0.getClass();
          String[] var10001 = new String[2];
          String[] var4 = c;
@@ -412,7 +412,7 @@ public class Disabler extends Module {
    @EventTarget(3)
    public void C(com.elowen.events.impl.EventPacket var1) {
       String[] var2 = Teams.a$ArrString();
-      if (AntiStaff$PayloadDecoder.player != null) {
+      if (G.player != null) {
          this.f$V();
          if (var1.M() == EventType.RECEIVE && var1.R$Packet() instanceof ClientboundLoginPacket) {
             this.J$V();
@@ -455,7 +455,7 @@ public class Disabler extends Module {
                }
             }
 
-            if (this.Z.r && var1.M() == EventType.SEND && !var1.c$Z() && AntiStaff$PayloadDecoder.player != null) {
+            if (this.Z.r && var1.M() == EventType.SEND && !var1.c$Z() && G.player != null) {
                if (var1.R$Packet() instanceof ServerboundMovePlayerPacket var10) {
                   if (var10.hasRotation()) {
                      if (var10.getYRot(0.0F) < 360.0F && var10.getYRot(0.0F) > -360.0F) {

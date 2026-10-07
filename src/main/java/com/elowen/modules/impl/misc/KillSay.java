@@ -60,12 +60,12 @@ public class KillSay extends Module {
    @EventTarget
    public void R(com.elowen.events.impl.EventPacket var1) {
       String[] var2 = Teams.a$ArrString();
-      if (var1.R$Packet() instanceof ClientboundPlayerInfoRemovePacket && var1.M() == EventType.RECEIVE && AntiStaff$PayloadDecoder.getConnection() != null) {
+      if (var1.R$Packet() instanceof ClientboundPlayerInfoRemovePacket && var1.M() == EventType.RECEIVE && G.getConnection() != null) {
          ClientboundPlayerInfoRemovePacket var3 = (ClientboundPlayerInfoRemovePacket)var1.R$Packet();
          Iterator var4 = var3.profileIds().iterator();
          while (var4.hasNext()) {
             UUID var5 = (UUID)var4.next();
-            PlayerInfo var6 = AntiStaff$PayloadDecoder.getConnection().getPlayerInfo(var5);
+            PlayerInfo var6 = G.getConnection().getPlayerInfo(var5);
             if (var6 != null) {
                String var7 = var6.getProfile().name();
                if (c.contains(var7)) {
@@ -87,7 +87,7 @@ public class KillSay extends Module {
    public void C(com.elowen.events.impl.EventMotion var1) {
       String[] var2 = Teams.a$ArrString();
       if (var1.Q() == EventType.PRE) {
-         if (AntiStaff$PayloadDecoder.player != null && AntiStaff$PayloadDecoder.player.tickCount < 10) {
+         if (G.player != null && G.player.tickCount < 10) {
             this.i.clear();
             c.clear();
             return;
@@ -95,14 +95,14 @@ public class KillSay extends Module {
 
          if (this.B.e(this.E.o$F()) && !this.i.isEmpty()) {
             String var3 = (String)this.i.poll();
-            boolean var4 = AntiStaff$PayloadDecoder.player.isSprinting();
+            boolean var4 = G.player.isSprinting();
             if (var4) {
-               AntiStaff$PayloadDecoder.player.setSprinting(false);
+               G.player.setSprinting(false);
             }
 
-            AntiStaff$PayloadDecoder.player.connection.sendChat(var3);
+            G.player.connection.sendChat(var3);
             if (var4) {
-               AntiStaff$PayloadDecoder.player.setSprinting(true);
+               G.player.setSprinting(true);
             }
 
             this.B.p();

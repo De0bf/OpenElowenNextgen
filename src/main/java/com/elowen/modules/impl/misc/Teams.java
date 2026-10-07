@@ -34,11 +34,11 @@ public class Teams extends Module {
       if (var0 instanceof Player) {
          if (b.v.t("Color")) {
             Integer var4 = var0.getTeamColor();
-            Integer var5 = AntiStaff$PayloadDecoder.player.getTeamColor();
+            Integer var5 = G.player.getTeamColor();
             return var4.equals(var5);
          } else {
             String var2 = b(var0);
-            String var3 = b(AntiStaff$PayloadDecoder.player);
+            String var3 = b(G.player);
             return Objects.equals(var2, var3);
          }
       } else {
@@ -48,7 +48,7 @@ public class Teams extends Module {
 
    public static String b(Entity var0) {
       String[] var10000 = a$ArrString();
-      PlayerInfo var2 = AntiStaff$PayloadDecoder.getConnection().getPlayerInfo(var0.getUUID());
+      PlayerInfo var2 = G.getConnection().getPlayerInfo(var0.getUUID());
       String[] var1 = var10000;
       PlayerInfo var3 = var2;
       if (var1 != null) {

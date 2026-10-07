@@ -11,12 +11,11 @@ runtime string encryption), so full semantic readability is not guaranteed.
 The remaining obfuscation does not affect behaviour — the sources still compile
 and produce a working mod jar.
 
-Because the tree is a decompilation, a few source locations carry decompiler
-artifacts where an inherited Minecraft-instance field (`Module.G` / `Wrapper.q`)
-was resolved as a *class* reference (e.g. `NameTags$NameTagData.player`).
-The build fixes only those specific mis-resolved references into a generated
-source tree at build time — the files under `src/` are left untouched. See the
-`normalizeSources` task in `build.gradle`.
+The tree started as a straight decompilation and carried a decompiler artifact
+where an inherited Minecraft-instance field (`Module.G` / `Wrapper.q`) had been
+resolved as a *class* reference — e.g. `NameTags$NameTagData.player` instead of
+`G.player`. Those mis-resolved references (152 of them across 20 files) have
+been corrected against the original class files, so `src/` now compiles as-is.
 
 ## Building
 

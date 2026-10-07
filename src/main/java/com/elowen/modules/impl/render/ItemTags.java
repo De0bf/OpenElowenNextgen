@@ -147,7 +147,7 @@ public class ItemTags extends Module {
       HasValue[] var2 = var10000;
       Minecraft var15 = G;
       if (var2 != null) {
-         if (NameTags$NameTagData.level == null) {
+         if (G.level == null) {
             return;
          }
 
@@ -164,9 +164,9 @@ public class ItemTags extends Module {
 
       Camera var3 = var15.gameRenderer.mainCamera();
       if (var3.isInitialized()) {
-         WorldProjector var4 = new WorldProjector(var3, NameTags$NameTagData.getWindow().getGuiScaledWidth(), NameTags$NameTagData.getWindow().getGuiScaledHeight(), com.elowen.utils.renderer.ViewBob.g$Matrix4f());
+         WorldProjector var4 = new WorldProjector(var3, G.getWindow().getGuiScaledWidth(), G.getWindow().getGuiScaledHeight(), com.elowen.utils.renderer.ViewBob.g$Matrix4f());
 
-         for (Entity var6 : NameTags$NameTagData.level.entitiesForRendering()) {
+         for (Entity var6 : G.level.entitiesForRendering()) {
             Entity var16 = var6;
             if (var2 != null) {
                if (!(var6 instanceof ItemEntity)) {
@@ -201,7 +201,7 @@ public class ItemTags extends Module {
    @com.elowen.events.api.EventTarget
    public void o(EventRender3D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          try {
             this.W(var1.d$F());
          } catch (Exception var4) {
@@ -212,7 +212,7 @@ public class ItemTags extends Module {
    @com.elowen.events.api.EventTarget
    public void J(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          if (!this.V.isEmpty()) {
             try {
                this.r.G$Canvas();

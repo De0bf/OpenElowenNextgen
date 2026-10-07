@@ -98,9 +98,9 @@ public class Projectile extends Module {
    @com.elowen.events.api.EventTarget
    public void q(EventRender var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          try {
-            Camera var3 = NameTags$NameTagData.gameRenderer.mainCamera();
+            Camera var3 = G.gameRenderer.mainCamera();
             if (!var3.isInitialized()) {
                return;
             }
@@ -111,7 +111,7 @@ public class Projectile extends Module {
             }
 
             this.y.I(var4, new WorldProjector(var3, com.elowen.utils.renderer.WorldSkiaRenderer.c$I(), com.elowen.utils.renderer.WorldSkiaRenderer.n$I(), com.elowen.utils.renderer.ViewBob.g$Matrix4f()));
-            float var5 = NameTags$NameTagData.getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            float var5 = G.getDeltaTracker().getGameTimeDeltaPartialTick(false);
             this.W(var5);
             this.g(var5);
             this.y.G$V();
@@ -127,7 +127,7 @@ public class Projectile extends Module {
 
    private void W(float var1) {
       com.elowen.modules.impl.render.Projectile var10000 = this;
-      LocalPlayer var3 = NameTags$NameTagData.player;
+      LocalPlayer var3 = G.player;
       ItemStack var4 = var3.getMainHandItem();
       HasValue[] var2 = Theme.s$ArrQ();
       ItemStack var18 = var4;
@@ -185,7 +185,7 @@ public class Projectile extends Module {
          }
 
          if (var22.length >= 2) {
-            Camera var8 = NameTags$NameTagData.gameRenderer.mainCamera();
+            Camera var8 = G.gameRenderer.mainCamera();
             Vec3 var9 = var8.position();
             double[] var10 = var7[0];
             double var11 = var10[0] - var9.x;
@@ -209,7 +209,7 @@ public class Projectile extends Module {
 
    private void g(float var1) {
       HasValue[] var10000 = Theme.s$ArrQ();
-      Iterator var3 = NameTags$NameTagData.level.entitiesForRendering().iterator();
+      Iterator var3 = G.level.entitiesForRendering().iterator();
       HasValue[] var2 = var10000;
 
       while (var3.hasNext()) {

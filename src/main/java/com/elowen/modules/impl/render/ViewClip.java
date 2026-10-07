@@ -31,8 +31,8 @@ public class ViewClip extends Module {
    @com.elowen.events.api.EventTarget
    public void J(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (this.V != NameTags$NameTagData.options.getCameraType()) {
-         this.V = NameTags$NameTagData.options.getCameraType();
+      if (this.V != G.options.getCameraType()) {
+         this.V = G.options.getCameraType();
          if (this.V == CameraType.FIRST_PERSON || this.V == CameraType.THIRD_PERSON_BACK) {
             this.S.l = 0.0F;
          }

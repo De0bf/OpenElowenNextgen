@@ -40,7 +40,7 @@ public class NameProtect extends Module {
 
    public static String u$String(String var0) {
       HasValue[] var1 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.player == null) {
+      if (G.player == null) {
          return var0;
       }
 
@@ -50,7 +50,7 @@ public class NameProtect extends Module {
             return var0;
          }
 
-         String var3 = NameTags$NameTagData.player.getName().getString();
+         String var3 = G.player.getName().getString();
          if (var0.contains(var3)) {
             if (var2.K.t("Random")) {
                String[] var4 = b;
@@ -67,7 +67,7 @@ public class NameProtect extends Module {
 
    public static Component s(Component var0) {
       HasValue[] var1 = Theme.s$ArrQ();
-      if (var0 != null && NameTags$NameTagData.player != null) {
+      if (var0 != null && G.player != null) {
          try {
             NameProtect var2 = (NameProtect)Elowen.S$Elowen().q$ModuleManager().A(NameProtect.class);
             if (var2 == null || !var2.w()) {
@@ -77,7 +77,7 @@ public class NameProtect extends Module {
             return var0;
          }
 
-         String var5 = NameTags$NameTagData.player.getName().getString();
+         String var5 = G.player.getName().getString();
          if (!var0.getString().contains(var5)) {
             return var0;
          }

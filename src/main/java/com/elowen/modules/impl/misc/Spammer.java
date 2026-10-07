@@ -48,14 +48,14 @@ public class Spammer extends Module {
 
          String var5 = (String)var4.get(this.e.nextInt(var4.size()));
          String var6 = var3 + var5;
-         boolean var7 = AntiStaff$PayloadDecoder.player.isSprinting();
+         boolean var7 = G.player.isSprinting();
          if (var7) {
-            AntiStaff$PayloadDecoder.player.setSprinting(false);
+            G.player.setSprinting(false);
          }
 
-         AntiStaff$PayloadDecoder.player.connection.sendChat(var6);
+         G.player.connection.sendChat(var6);
          if (var7) {
-            AntiStaff$PayloadDecoder.player.setSprinting(true);
+            G.player.setSprinting(true);
          }
 
          this.j.p();

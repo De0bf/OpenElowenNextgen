@@ -79,11 +79,11 @@ public class NameTags extends Module {
 
    private boolean R$Z() {
       HasValue[] var1 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
-         Iterator var2 = NameTags$NameTagData.level.entitiesForRendering().iterator();
+      if (G.level != null && G.player != null) {
+         Iterator var2 = G.level.entitiesForRendering().iterator();
          while (var2.hasNext()) {
             Entity var3 = (Entity)var2.next();
-            if (var3 != NameTags$NameTagData.player && !(var3 instanceof BlinkingPlayer) && var3 instanceof Player) {
+            if (var3 != G.player && !(var3 instanceof BlinkingPlayer) && var3 instanceof Player) {
                return true;
             }
          }
@@ -103,7 +103,7 @@ public class NameTags extends Module {
    public void O(com.elowen.events.impl.EventMotion var1) {
       HasValue[] var2 = Theme.s$ArrQ();
       if (var1.Q() == com.elowen.events.api.types.EventType.PRE) {
-         if (NameTags$NameTagData.level == null || NameTags$NameTagData.player == null) {
+         if (G.level == null || G.player == null) {
             return;
          }
 
@@ -111,12 +111,12 @@ public class NameTags extends Module {
             this.J = null;
          }
 
-         Iterator var3 = NameTags$NameTagData.level.players().iterator();
+         Iterator var3 = G.level.players().iterator();
          while (var3.hasNext()) {
             Player var4 = (Player)var3.next();
             label100:
-            if (!(var4 instanceof BlinkingPlayer) && var4 != NameTags$NameTagData.player) {
-               if (U(var4, NameTags$NameTagData.player.getYRot(), NameTags$NameTagData.player.getXRot())) {
+            if (!(var4 instanceof BlinkingPlayer) && var4 != G.player) {
+               if (U(var4, G.player.getYRot(), G.player.getXRot())) {
                   this.T.put(var4, this.T.getOrDefault(var4, 0) + 1);
                   if ((Integer)this.T.get(var4) < 10) {
                      break label100;
@@ -146,14 +146,14 @@ public class NameTags extends Module {
             return;
          }
 
-         this.q = this.F(NameTags$NameTagData.level);
+         this.q = this.F(G.level);
       }
    }
 
    public static boolean U(Entity var0, float var1, float var2) {
       HasValue[] var3 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.player != null && var0 != null) {
-         Vec3 var4 = NameTags$NameTagData.player.getEyePosition(1.0F);
+      if (G.player != null && var0 != null) {
+         Vec3 var4 = G.player.getEyePosition(1.0F);
          HitResult var5 = com.elowen.utils.rotation.RotationUtils.m(var0.getBoundingBox(), new com.elowen.utils.Vector2f(var1, var2), var4, 150.0);
          return var5 != null && var5.getType() == Type.ENTITY ? var5.getLocation().distanceTo(var4) < 150.0 : false;
       } else {
@@ -164,7 +164,7 @@ public class NameTags extends Module {
    @com.elowen.events.api.EventTarget
    public void c(EventRender3D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
+      if (G.level != null && G.player != null) {
          try {
             this.O(var1.d$F());
             this.f = null;
@@ -182,7 +182,7 @@ public class NameTags extends Module {
    @com.elowen.events.api.EventTarget
    public void q(EventMouseClick var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.player != null && this.J != null) {
+      if (G.player != null && this.J != null) {
          if (var1.v$I() == 2 && !var1.Z() && this.z.w()) {
             String var3 = this.J.getName().getString();
             if (com.elowen.utils.FriendManager.A(this.J)) {
@@ -201,7 +201,7 @@ public class NameTags extends Module {
    @com.elowen.events.api.EventTarget
    public void O(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          try {
             Canvas var3 = this.Q.G$Canvas();
             if (var3 == null) {
@@ -212,7 +212,7 @@ public class NameTags extends Module {
             java.util.ArrayList var5 = new java.util.ArrayList();
             if (this.f != null && this.q != null) {
                Vector2f var6 = this.f;
-               float var7 = Math.max(80.0F - Mth.sqrt((float)NameTags$NameTagData.player.distanceToSqr(this.q.getX() + 0.5, this.q.getY() + 1.75, this.q.getZ() + 0.5)), 0.0F)
+               float var7 = Math.max(80.0F - Mth.sqrt((float)G.player.distanceToSqr(this.q.getX() + 0.5, this.q.getY() + 1.75, this.q.getZ() + 0.5)), 0.0F)
                   * this.d.o$F()
                   / 80.0F;
                if (var7 > 0.0F) {
@@ -228,7 +228,7 @@ public class NameTags extends Module {
 
             for (Entry var23 : this.C.entrySet()) {
                Entity var27 = (Entity)var23.getKey();
-               if (var27 != NameTags$NameTagData.player && var27 instanceof Player var31 && !var27.isRemoved()) {
+               if (var27 != G.player && var27 instanceof Player var31 && !var27.isRemoved()) {
                   Vector2f var35 = (Vector2f)var23.getValue();
                   if (var35 != null && var35.x != Float.MAX_VALUE && var35.y != Float.MAX_VALUE) {
                      String var39 = this.k(var31);
@@ -365,12 +365,12 @@ public class NameTags extends Module {
 
    private void O(float var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
+      if (G.level != null && G.player != null) {
          this.C.clear();
          this.X.clear();
 
-         for (Entity var4 : NameTags$NameTagData.level.entitiesForRendering()) {
-            if (var4 instanceof Player var5 && var4 != NameTags$NameTagData.player && !var4.isRemoved()) {
+         for (Entity var4 : G.level.entitiesForRendering()) {
+            if (var4 instanceof Player var5 && var4 != G.player && !var4.isRemoved()) {
                String var10000 = var4.getName().getString();
                String[] var17 = b;
                if (!var10000.startsWith("CIT-")) {
@@ -392,7 +392,7 @@ public class NameTags extends Module {
 
             for (com.elowen.utils.SharedESPData var20 : var18.values()) {
                double var21 = var20.n$D();
-               double var22 = var20.X$D() + NameTags$NameTagData.player.getBbHeight() + 0.5;
+               double var22 = var20.X$D() + G.player.getBbHeight() + 0.5;
                double var23 = var20.I();
                Vector2f var24 = ProjectionUtils.g(var21, var22, var23, var1);
                if (var24 != null && var24.x != Float.MAX_VALUE && var24.y != Float.MAX_VALUE) {

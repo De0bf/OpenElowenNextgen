@@ -74,7 +74,7 @@ public class Animations extends Module {
 
    @com.elowen.events.api.EventTarget
    public void J(com.elowen.events.impl.EventMotion var1) {
-      if (var1.Q() == EventType.PRE && NameTags$NameTagData.player != null) {
+      if (var1.Q() == EventType.PRE && G.player != null) {
          this.L();
       }
    }
@@ -127,8 +127,8 @@ public class Animations extends Module {
 
    private void L() {
       HasValue[] var1 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.player != null) {
-         boolean var2 = NameTags$NameTagData.options.keyUse.isDown();
+      if (G.player != null) {
+         boolean var2 = G.options.keyUse.isDown();
          if (this.j.w() && this.H()) {
             var2 = true;
          }
@@ -144,7 +144,7 @@ public class Animations extends Module {
    private boolean N() {
       HasValue[] var1 = Theme.s$ArrQ();
       if (this.w() && !this.I.t("None")) {
-         LocalPlayer var2 = NameTags$NameTagData.player;
+         LocalPlayer var2 = G.player;
          if (var2 == null) {
             return false;
          }
@@ -167,7 +167,7 @@ public class Animations extends Module {
          } else if (var5) {
             return true;
          } else {
-            return var3 ? false : NameTags$NameTagData.options.keyUse.isDown() || this.J;
+            return var3 ? false : G.options.keyUse.isDown() || this.J;
          }
       } else {
          return false;
@@ -483,7 +483,7 @@ public class Animations extends Module {
       float var10002 = 0.08F;
       if (var5 != null) {
          var10001 *= 0.08F;
-         var10002 = NameTags$NameTagData.player.isCrouching() ? -0.06F : -0.12F;
+         var10002 = G.player.isCrouching() ? -0.06F : -0.12F;
       }
 
       var1.translate(var10001, var10002, 0.18F);

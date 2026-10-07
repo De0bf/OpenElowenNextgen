@@ -79,7 +79,7 @@ public class ArrayListModule extends Module {
    @com.elowen.events.api.EventTarget
    public void l(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
+      if (G.level != null && G.player != null) {
          if (this.w()) {
             try {
                Canvas var3 = this.Q.G$Canvas();
@@ -247,7 +247,7 @@ public class ArrayListModule extends Module {
                break label129;
             }
 
-            var43 = NameTags$NameTagData.getWindow().getGuiScaledWidth();
+            var43 = G.getWindow().getGuiScaledWidth();
          }
 
          var44 = var43 - var6 - 6.0F + this.i.o$F();

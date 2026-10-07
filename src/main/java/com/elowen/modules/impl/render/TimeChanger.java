@@ -23,9 +23,9 @@ public class TimeChanger extends Module {
    @com.elowen.events.api.EventTarget
    public void G(EventTick var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null) {
-         NameTags$NameTagData.level.setTimeFromServer((long)this.Q.o$F());
-         NameTags$NameTagData.level.getLevelData().setGameTime((long)this.Q.o$F());
+      if (G.level != null) {
+         G.level.setTimeFromServer((long)this.Q.o$F());
+         G.level.getLevelData().setGameTime((long)this.Q.o$F());
       }
    }
 

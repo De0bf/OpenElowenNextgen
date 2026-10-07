@@ -122,10 +122,10 @@ public class ChestESP extends Module {
    @com.elowen.events.api.EventTarget
    public void D(EventRender var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          if (!this.I.isEmpty()) {
             try {
-               Camera var3 = NameTags$NameTagData.gameRenderer.mainCamera();
+               Camera var3 = G.gameRenderer.mainCamera();
                if (!var3.isInitialized()) {
                   return;
                }

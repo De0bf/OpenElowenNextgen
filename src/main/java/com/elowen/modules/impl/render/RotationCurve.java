@@ -54,10 +54,10 @@ public class RotationCurve extends Module {
       HasValue[] var2 = Theme.s$ArrQ();
       if (var1.s$f() == EventType.POST) {
          this.P++;
-         if (NameTags$NameTagData.player != null && NameTags$NameTagData.level != null) {
-            if (NameTags$NameTagData.level != this.o) {
+         if (G.player != null && G.level != null) {
+            if (G.level != this.o) {
                this.l.clear();
-               this.o = NameTags$NameTagData.level;
+               this.o = G.level;
             }
 
             float var3 = this.h.o$F();
@@ -67,8 +67,8 @@ public class RotationCurve extends Module {
             }
 
             if (this.E.w()) {
-               Vec3 var4 = com.elowen.utils.rotation.RotationUtils.b(NameTags$NameTagData.player.getYRot(), NameTags$NameTagData.player.getXRot());
-               Vec3 var5 = NameTags$NameTagData.player.getEyePosition(1.0F);
+               Vec3 var4 = com.elowen.utils.rotation.RotationUtils.b(G.player.getYRot(), G.player.getXRot());
+               Vec3 var5 = G.player.getEyePosition(1.0F);
                Vec3 var6 = var5.add(var4.x * var3, var4.y * var3, var4.z * var3);
                this.l.addLast(new RotationCurve$TrailPoint(var6, this.P));
             }
@@ -89,10 +89,10 @@ public class RotationCurve extends Module {
    @com.elowen.events.api.EventTarget
    public void l(EventRender var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          if (!this.l.isEmpty()) {
             try {
-               Camera var3 = NameTags$NameTagData.gameRenderer.mainCamera();
+               Camera var3 = G.gameRenderer.mainCamera();
                if (!var3.isInitialized()) {
                   return;
                }

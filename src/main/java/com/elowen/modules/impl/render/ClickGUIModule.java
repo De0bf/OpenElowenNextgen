@@ -24,8 +24,8 @@ public class ClickGUIModule extends Module {
          this.S = new ClickGUI();
       }
 
-      if (NameTags$NameTagData.gui.screen() != this.S) {
-         NameTags$NameTagData.gui.setScreen(this.S);
+      if (G.gui.screen() != this.S) {
+         G.gui.setScreen(this.S);
       }
 
       this.R$V();

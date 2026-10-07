@@ -44,11 +44,11 @@ public class Compass extends Module {
 
    private boolean p() {
       HasValue[] var1 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
-         Iterator var2 = NameTags$NameTagData.level.entitiesForRendering().iterator();
+      if (G.level != null && G.player != null) {
+         Iterator var2 = G.level.entitiesForRendering().iterator();
          while (var2.hasNext()) {
             Entity var3 = (Entity)var2.next();
-            if (var3 != NameTags$NameTagData.player && !(var3 instanceof BlinkingPlayer) && var3 instanceof Player) {
+            if (var3 != G.player && !(var3 instanceof BlinkingPlayer) && var3 instanceof Player) {
                return true;
             }
          }
@@ -62,20 +62,20 @@ public class Compass extends Module {
    @com.elowen.events.api.EventTarget
    public void B(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          if (!this.M.w() || InventoryUtils.C(Items.COMPASS)) {
             if (!this.K.w() || !this.p()) {
-               BlockPos var3 = this.R(NameTags$NameTagData.level);
+               BlockPos var3 = this.R(G.level);
                if (var3 != null) {
-                  float var4 = NameTags$NameTagData.getDeltaTracker().getGameTimeDeltaPartialTick(false);
-                  double var5 = Mth.lerp(var4, NameTags$NameTagData.player.xOld, NameTags$NameTagData.player.getX());
-                  double var7 = Mth.lerp(var4, NameTags$NameTagData.player.zOld, NameTags$NameTagData.player.getZ());
+                  float var4 = G.getDeltaTracker().getGameTimeDeltaPartialTick(false);
+                  double var5 = Mth.lerp(var4, G.player.xOld, G.player.getX());
+                  double var7 = Mth.lerp(var4, G.player.zOld, G.player.getZ());
                   float var9 = com.elowen.utils.rotation.RotationManager.X != null
                      ? com.elowen.utils.rotation.RotationManager.X.H
-                     : Mth.wrapDegrees(Mth.lerp(var4, NameTags$NameTagData.player.yRotO, NameTags$NameTagData.player.getYRot()));
+                     : Mth.wrapDegrees(Mth.lerp(var4, G.player.yRotO, G.player.getYRot()));
                   float var10 = (float)(Math.toDegrees(Math.atan2(var3.getZ() - var7, var3.getX() - var5)) - 90.0 - var9);
-                  float var11 = NameTags$NameTagData.getWindow().getGuiScaledWidth() / 2.0F;
-                  float var12 = NameTags$NameTagData.getWindow().getGuiScaledHeight() / 2.0F;
+                  float var11 = G.getWindow().getGuiScaledWidth() / 2.0F;
+                  float var12 = G.getWindow().getGuiScaledHeight() / 2.0F;
 
                   try {
                      Canvas var13 = this.z.G$Canvas();

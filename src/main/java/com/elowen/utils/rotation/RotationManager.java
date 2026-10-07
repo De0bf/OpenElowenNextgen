@@ -70,28 +70,28 @@ public class RotationManager implements Wrapper {
 
    public static void y(float var0, float var1) {
       boolean var2 = RotationUtils.t();
-      LocalPlayer var10000 = EventUseItemRayTrace.player;
+      LocalPlayer var10000 = q.player;
       if (var2) {
-         if (EventUseItemRayTrace.player == null) {
+         if (q.player == null) {
             return;
          }
 
-         var10000 = EventUseItemRayTrace.player;
+         var10000 = q.player;
       }
 
       float var3 = var10000.getYRot();
       float var4 = Mth.wrapDegrees(var3);
       float var5 = Mth.wrapDegrees(var0);
       float var6 = Mth.wrapDegrees(var5 - var4);
-      EventUseItemRayTrace.player.setYRot(var3 + var6);
-      EventUseItemRayTrace.player.setXRot(Mth.clamp(var1, -90.0F, 90.0F));
-      EventUseItemRayTrace.player.setOldRot();
+      q.player.setYRot(var3 + var6);
+      q.player.setXRot(Mth.clamp(var1, -90.0F, 90.0F));
+      q.player.setOldRot();
    }
 
    public static void F() {
       boolean var0 = RotationUtils.t();
       label19:
-      if (EventUseItemRayTrace.player != null) {
+      if (q.player != null) {
          Vector2f var10000 = X;
          if (var0) {
             if (X == null) {
@@ -179,7 +179,7 @@ public class RotationManager implements Wrapper {
 
    public static Vector2f a$h() {
       boolean var0 = RotationUtils.T$Z();
-      return r != null ? r : new Vector2f(EventUseItemRayTrace.player != null ? Mth.wrapDegrees(EventUseItemRayTrace.player.getYRot()) : 0.0F, EventUseItemRayTrace.player != null ? EventUseItemRayTrace.player.getXRot() : 0.0F);
+      return r != null ? r : new Vector2f(q.player != null ? Mth.wrapDegrees(q.player.getYRot()) : 0.0F, q.player != null ? q.player.getXRot() : 0.0F);
    }
 
    public static void l(Vector2f var0) {
@@ -202,7 +202,7 @@ public class RotationManager implements Wrapper {
    }
 
    public static Vector2f m(Vector2f var0, Vector2f var1) {
-      float var2 = (float)(((Double)EventUseItemRayTrace.options.sensitivity().get()).floatValue() * (1.0 + Math.random() / 100000.0) * 0.6F + 0.2F);
+      float var2 = (float)(((Double)q.options.sensitivity().get()).floatValue() * (1.0 + Math.random() / 100000.0) * 0.6F + 0.2F);
       double var3 = var2 * var2 * var2 * 8.0F * 0.15;
       float var5 = o(var0.H + (float)(Math.round((var1.H - var0.H) / var3) * var3));
       float var6 = w(var0.E + (float)(Math.round((var1.E - var0.E) / var3) * var3));
@@ -238,14 +238,14 @@ public class RotationManager implements Wrapper {
    @EventTarget(0)
    public void k(EventTick var1) {
       boolean var2 = RotationUtils.t();
-      if (var1.s$f() == com.elowen.events.api.types.EventType.PRE && EventUseItemRayTrace.player != null) {
+      if (var1.s$f() == com.elowen.events.api.types.EventType.PRE && q.player != null) {
          Vector2f var10000 = X;
          if (var2) {
             if (X != null) {
                return;
             }
 
-            X = new Vector2f(Mth.wrapDegrees(EventUseItemRayTrace.player.getYRot()), EventUseItemRayTrace.player.getXRot());
+            X = new Vector2f(Mth.wrapDegrees(q.player.getYRot()), q.player.getXRot());
             b = X.H;
             var10000 = X;
          }
@@ -261,7 +261,7 @@ public class RotationManager implements Wrapper {
    @EventTarget(0)
    public void t(com.elowen.events.impl.EventMoveInput var1) {
       boolean var2 = RotationUtils.t();
-      if (L && r != null && EventUseItemRayTrace.player != null) {
+      if (L && r != null && q.player != null) {
          float var6;
          label27: {
             Vector2f var10000 = X;
@@ -278,7 +278,7 @@ public class RotationManager implements Wrapper {
          }
 
          float var3 = var6;
-         float var4 = EventUseItemRayTrace.player.getYRot();
+         float var4 = q.player.getYRot();
          float var5 = Mth.wrapDegrees(var4 + (var4 - var3));
          com.elowen.utils.MoveUtils.b(var1, var5);
       }
@@ -301,7 +301,7 @@ public class RotationManager implements Wrapper {
       int var66 = 0;
       float var70 = 0.0F;
       boolean var2 = RotationUtils.t();
-      if (var1.s$f() == com.elowen.events.api.types.EventType.PRE && EventUseItemRayTrace.player != null) {
+      if (var1.s$f() == com.elowen.events.api.types.EventType.PRE && q.player != null) {
          label717: {
             Vector2f var10000;
             var10000 = r;
@@ -318,7 +318,7 @@ public class RotationManager implements Wrapper {
                   }
                }
 
-               var10000 = G = new Vector2f(Mth.wrapDegrees(EventUseItemRayTrace.player.getYRot()), EventUseItemRayTrace.player.getXRot());
+               var10000 = G = new Vector2f(Mth.wrapDegrees(q.player.getYRot()), q.player.getXRot());
             }
 
             r = var10000;
@@ -518,7 +518,7 @@ public class RotationManager implements Wrapper {
                               }
                            }
 
-                           var50 = new Vector2f(Mth.wrapDegrees(EventUseItemRayTrace.player.getYRot()), EventUseItemRayTrace.player.getXRot());
+                           var50 = new Vector2f(Mth.wrapDegrees(q.player.getYRot()), q.player.getXRot());
                         }
 
                         var13 = var50;
@@ -579,7 +579,7 @@ public class RotationManager implements Wrapper {
                               }
                            }
 
-                           var52 = new Vector2f(Mth.wrapDegrees(EventUseItemRayTrace.player.getYRot()), EventUseItemRayTrace.player.getXRot());
+                           var52 = new Vector2f(Mth.wrapDegrees(q.player.getYRot()), q.player.getXRot());
                         }
 
                         var22 = var52;

@@ -72,7 +72,7 @@ public class TargetHUD extends Module {
    @com.elowen.events.api.EventTarget
    public void v(EventRender2D var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (this.w() && NameTags$NameTagData.level != null && NameTags$NameTagData.player != null) {
+      if (this.w() && G.level != null && G.player != null) {
          Aura var3 = (Aura)Elowen.S$Elowen().q$ModuleManager().A(Aura.class);
          if (var3 != null && var3.w()) {
             if (Aura.cj instanceof LivingEntity var5) {
@@ -130,9 +130,9 @@ public class TargetHUD extends Module {
       float var9 = Math.max(var7 + 10.0F, 60.0F);
       var9 = Math.max(var9, var8 + 10.0F);
       if (this.h.w()) {
-         float var12 = NameTags$NameTagData.getDeltaTracker().getGameTimeDeltaPartialTick(false);
+         float var12 = G.getDeltaTracker().getGameTimeDeltaPartialTick(false);
          Vec3 var13 = var2.getPosition(var12).add(0.0, var2.getBbHeight() / 2.0, 0.0);
-         float var14 = (float)Math.toRadians(NameTags$NameTagData.player.getYRot());
+         float var14 = (float)Math.toRadians(G.player.getYRot());
          double var15 = -Math.cos(var14);
          double var17 = -Math.sin(var14);
          double var19 = this.F.o$F();
@@ -146,8 +146,8 @@ public class TargetHUD extends Module {
          float var11 = var22.y - 15.0F;
       }
 
-      float var26 = NameTags$NameTagData.getWindow().getGuiScaledWidth() / 2.0F + 10.0F;
-      float var27 = NameTags$NameTagData.getWindow().getGuiScaledHeight() / 2.0F + 10.0F;
+      float var26 = G.getWindow().getGuiScaledWidth() / 2.0F + 10.0F;
+      float var27 = G.getWindow().getGuiScaledHeight() / 2.0F + 10.0F;
       Theme var28 = Theme.K();
       if (var28 != null) {
          var28.g$I();

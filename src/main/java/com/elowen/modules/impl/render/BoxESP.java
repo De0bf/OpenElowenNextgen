@@ -53,10 +53,10 @@ public class BoxESP extends Module {
    @com.elowen.events.api.EventTarget
    public void j(EventRender var1) {
       HasValue[] var2 = Theme.s$ArrQ();
-      if (NameTags$NameTagData.level != null && NameTags$NameTagData.player != null && this.w()) {
+      if (G.level != null && G.player != null && this.w()) {
          try {
-            float var3 = NameTags$NameTagData.getDeltaTracker().getGameTimeDeltaPartialTick(false);
-            Camera var4 = NameTags$NameTagData.gameRenderer.mainCamera();
+            float var3 = G.getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            Camera var4 = G.gameRenderer.mainCamera();
             if (!var4.isInitialized()) {
                return;
             }
@@ -91,7 +91,7 @@ public class BoxESP extends Module {
       double var4 = (double)this.M.o$F() * this.M.o$F();
       HasValue[] var3 = var10000;
 
-      for (Entity var7 : NameTags$NameTagData.level.entitiesForRendering()) {
+      for (Entity var7 : G.level.entitiesForRendering()) {
          Entity var16 = var7;
          if (var3 != null) {
             if (!(var7 instanceof Player)) {
@@ -102,9 +102,9 @@ public class BoxESP extends Module {
          }
 
          label48: {
-            LocalPlayer var10001 = NameTags$NameTagData.player;
+            LocalPlayer var10001 = G.player;
             if (var3 != null) {
-               if (var16 == NameTags$NameTagData.player) {
+               if (var16 == G.player) {
                   continue;
                }
 
@@ -113,7 +113,7 @@ public class BoxESP extends Module {
                   break label48;
                }
 
-               var10001 = NameTags$NameTagData.player;
+               var10001 = G.player;
             }
 
             if (var16.distanceToSqr(var10001) > var4) {
@@ -137,7 +137,7 @@ public class BoxESP extends Module {
 
    private void U(com.elowen.utils.renderer.threeD.Skija3DRenderer var1) {
       HasValue[] var10000 = Theme.s$ArrQ();
-      HitResult var3 = NameTags$NameTagData.hitResult;
+      HitResult var3 = G.hitResult;
       HasValue[] var2 = var10000;
       HitResult var5 = var3;
       if (var2 != null) {
