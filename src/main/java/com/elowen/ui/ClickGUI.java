@@ -269,7 +269,7 @@ public class ClickGUI extends Screen {
          var2 = this;
       }
 
-      var2.onClose();
+      super.onClose();
    }
 
    @EventTarget
